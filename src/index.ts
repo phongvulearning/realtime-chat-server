@@ -1,5 +1,6 @@
 import { Profanity } from "@2toad/profanity";
 import * as dotenv from "dotenv";
+
 import express from "express";
 import http from "http";
 import { Server } from "socket.io";
@@ -16,9 +17,14 @@ const allowedOrigin = process.env.ALLOWED_ORIGIN as string;
 const app = express();
 const server = http.createServer(app);
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: allowedOrigin, // Allow this origin
+    methods: ["GET", "POST"],
   },
 });
 
