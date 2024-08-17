@@ -7,6 +7,7 @@ import { Server } from "socket.io";
 import { generateMessage, generateUser } from "./helpers";
 import ChatBot from "./chatbot";
 import { Author } from "./types";
+import cors from "cors";
 
 // const envFile = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : ".env";
 const envFile = ".env";
@@ -15,6 +16,13 @@ const port = process.env.PORT || 3000;
 const allowedOrigin = process.env.ALLOWED_ORIGIN as string;
 
 const app = express();
+
+app.use(
+  cors({
+    origin: allowedOrigin, // Allow this origin
+  })
+);
+
 const server = http.createServer(app);
 
 app.get("/", (req, res) => {
