@@ -17,12 +17,6 @@ const allowedOrigin = process.env.ALLOWED_ORIGIN as string;
 
 const app = express();
 
-app.use(
-  cors({
-    origin: allowedOrigin, // Allow this origin
-  })
-);
-
 const server = http.createServer(app);
 
 app.get("/", (req, res) => {
