@@ -93,4 +93,3 @@ web_modules/
 .pnp.*
 
 .env*
-.build
